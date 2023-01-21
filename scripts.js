@@ -18,11 +18,13 @@ const colorInput = document.getElementById('color-input');
 const penToggle = document.getElementById('pen-toggle');
 const eraserToggle = document.getElementById('eraser-toggle');
 const rainbowToggle = document.getElementById('rainbow-toggle');
+const clearButton = document.getElementById('clear-button');
 
 colorInput.addEventListener('change', function(){if(penToggle.checked) color=colorInput.value;});
 penToggle.addEventListener('click', function(){color=colorInput.value;});
-eraserToggle.addEventListener('click', function(){color='#ffffff'});
-rainbowToggle.addEventListener('click', function(){color=getRandomColor()});
+eraserToggle.addEventListener('click', function(){color=null;});
+rainbowToggle.addEventListener('click', function(){color=getRandomColor();});
+clearButton.addEventListener('click', function(){boxes.forEach(box => {box.style.backgroundColor=null;});});
 
 function paintColor(e){
   if (rainbowToggle.checked) color=getRandomColor();
