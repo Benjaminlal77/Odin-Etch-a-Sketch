@@ -1,5 +1,8 @@
-let size=16;
 const canvas = document.getElementById('canvas');
+const colorInput = document.getElementById('color-input');
+
+let size=16;
+let color='#000000';
 let boxes = [];
 for (let i=0; i<size; i++){
   for (let i2=0; i2<size; i2++){
@@ -19,5 +22,9 @@ boxes.forEach(box=>{
   });
 });
 function paintColor(e){
-  e.target.style.backgroundColor='#000000';
+  e.target.style.backgroundColor=color;
 }
+
+colorInput.addEventListener('change', function(e){
+  color=colorInput.value;
+});

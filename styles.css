@@ -11,6 +11,26 @@ body {
 }
 #container {
   height: 600px;
+  display: flex;
+}
+#inputs {
+  width: 200px;
+  height: 100%;
+  padding: 20px;
+  border: solid 1px red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#inputs div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#color-input {
+  width: 60px;
+  height: 40px;
 }
 #canvas {
   width: 600px;
