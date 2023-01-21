@@ -1,5 +1,4 @@
 const canvas = document.getElementById('canvas');
-const colorInput = document.getElementById('color-input');
 
 let size=16;
 let color='#000000';
@@ -15,16 +14,18 @@ for (let i=0; i<size; i++){
   }
 }
 
+function paintColor(e){e.target.style.backgroundColor=color;}
 boxes.forEach(box=>{
   box.addEventListener('mousedown', paintColor);
   box.addEventListener('mouseenter', function(e){
     if (e.buttons===1){paintColor(e);}
   });
 });
-function paintColor(e){
-  e.target.style.backgroundColor=color;
-}
 
-colorInput.addEventListener('change', function(e){
-  color=colorInput.value;
-});
+const colorInput = document.getElementById('color-input');
+const penToggle = document.getElementById('pen-toggle');
+const eraserToggle = document.getElementById('eraser-toggle');
+
+colorInput.addEventListener('change', function(){if(penToggle.checked) color=colorInput.value;});
+penToggle.addEventListener('click', function(){color=colorInput.value;});
+eraserToggle.addEventListener('click', function(){color='#ffffff'});
