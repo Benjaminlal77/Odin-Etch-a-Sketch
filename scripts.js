@@ -14,18 +14,29 @@ for (let i=0; i<size; i++){
   }
 }
 
-function paintColor(e){e.target.style.backgroundColor=color;}
+const colorInput = document.getElementById('color-input');
+const penToggle = document.getElementById('pen-toggle');
+const eraserToggle = document.getElementById('eraser-toggle');
+const rainbowToggle = document.getElementById('rainbow-toggle');
+
+colorInput.addEventListener('change', function(){if(penToggle.checked) color=colorInput.value;});
+penToggle.addEventListener('click', function(){color=colorInput.value;});
+eraserToggle.addEventListener('click', function(){color='#ffffff'});
+rainbowToggle.addEventListener('click', function(){color=getRandomColor()});
+
+function paintColor(e){
+  if (rainbowToggle.checked) color=getRandomColor();
+  e.target.style.backgroundColor=color;
+}
 boxes.forEach(box=>{
   box.addEventListener('mousedown', paintColor);
   box.addEventListener('mouseenter', function(e){
     if (e.buttons===1){paintColor(e);}
   });
 });
-
-const colorInput = document.getElementById('color-input');
-const penToggle = document.getElementById('pen-toggle');
-const eraserToggle = document.getElementById('eraser-toggle');
-
-colorInput.addEventListener('change', function(){if(penToggle.checked) color=colorInput.value;});
-penToggle.addEventListener('click', function(){color=colorInput.value;});
-eraserToggle.addEventListener('click', function(){color='#ffffff'});
+function getRandomColor(){
+  let r=Math.floor((Math.random() * 255))+1;  
+  let g=Math.floor((Math.random() * 255))+1;
+  let b=Math.floor((Math.random() * 255))+1;  
+  return `rgb(${r},${g},${b})`;
+}
